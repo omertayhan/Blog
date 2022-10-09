@@ -1,2 +1,2 @@
-﻿#selam
-ilk commit.
+﻿#selam ben ömer tufan ayhan
+ilk commit. 
