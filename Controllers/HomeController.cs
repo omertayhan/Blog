@@ -7,10 +7,35 @@ namespace Blog.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly BlogContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, BlogContext context)
         {
             _logger = logger;
+            _context = context;
+        }
+
+        public async Task<IActionResult> AddCategory(Category category)
+        {
+            await _context.AddAsync(category);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Category));
+        }
+        public IActionResult Category()
+        {
+            return View();
+        }
+        public IActionResult About()
+        {
+            return View();
+        }
+        public IActionResult Login()
+        {
+            return View();
+        }
+        public IActionResult Contact()
+        {
+            return View();
         }
 
         public IActionResult Index()
