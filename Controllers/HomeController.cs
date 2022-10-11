@@ -14,7 +14,6 @@ namespace Blog.Controllers
             _logger = logger;
             _context = context;
         }
-
         public async Task<IActionResult> AddCategory(Category category)
         {
             await _context.AddAsync(category);
@@ -23,7 +22,8 @@ namespace Blog.Controllers
         }
         public IActionResult Category()
         {
-            return View();
+            List<Category> list = _context.Category.ToList();
+            return View(list);
         }
         public IActionResult About()
         {
@@ -33,16 +33,18 @@ namespace Blog.Controllers
         {
             return View();
         }
+        public IActionResult SignIn()
+        {
+            return View();
+        }
         public IActionResult Contact()
         {
             return View();
         }
-
         public IActionResult Index()
         {
             return View();
         }
-
         public IActionResult Privacy()
         {
             return View();
