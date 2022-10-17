@@ -25,6 +25,13 @@ namespace Blog.Controllers
             List<Category> list = _context.Category.ToList();
             return View(list);
         }
+        public async Task<ActionResult> DeleteCategory(int? id)
+        {
+            Category category = await _context.Category.FindAsync(id);
+            _context.Remove(category);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Category));
+        }
         public IActionResult About()
         {
             return View();
