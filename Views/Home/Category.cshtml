@@ -4,14 +4,14 @@
     ViewData["Title"] = "Category";
 }
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addCategory">
+<button type="button" onclick="clearForm()" class="btn btn-primary" data-toggle="modal" data-target="#CategoryModal">
     Kategori Ekle
 </button>
 <table class="table table-hover">
     <thead>
-        <th scope="col">Id</th>
-        <th scope="col">Name</th>
-        <th scope="col">Options</th>
+    <th scope="col">Id</th>
+    <th scope="col">Name</th>
+    <th scope="col">Options</th>
     </thead>
     <tbody>
         @foreach (var item in Model)
@@ -28,11 +28,12 @@
     </tbody>
 </table>
 <!-- Modal -->
-<div class="modal fade" id="addCategory" tabindex="-1" role="dialog" aria-labelledby="addCategoryLabel" aria-hidden="true">
+<div class="modal fade" id="CategoryModal" tabindex="-1" role="dialog" aria-labelledby="CategoryModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="addCategoryLabel">Add Category</h5>
+                <h5 class="modal-title" id="addCategory">Add Category</h5>
+                <h5 class="modal-title" id="updateCategory">Update Category</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -41,14 +42,48 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <input type="hidden" name="Id" id="Id" class="form-control">
-                        <input type="text" placeholder="Lütfen Kategori Giriniz.." name="Name" id="Name" class="form-control">
+                        <input type="text" name="Name" id="Name" class="form-control" placeholder="Lütfen Kategori Giriniz..">
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-secondary saveDismiss" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary updateDismiss" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" id="saveBtn" class="btn btn-primary">Add</button>
+                    <button type="submit" id="updateBtn" class="btn btn-primary">Update</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+@section Scripts{
+<script>
+    $(() => clearForm()); //when new pages opens func start 
+    function updateForm(Id){
+        fetch('/Home/CategoryDetails?Id='+Id) //? => means i use parameters 
+            .then(res => res.json())
+            .then(res =>{
+                $('#Id').val(res.id)
+                $('#Name').val(res.name)
+            })
+        $('#saveBtn').hide();
+        $('#addCategory').hide();
+        $('.saveDismiss').hide();
+        $('#updateCategory').show();
+        $('.updateDismiss').show();
+        $('#updateBtn').show();
+        $('#CategoryModal').modal('show');
+
+    }
+
+    function clearForm() {
+        $('#Id').val(null);
+        $('#Name').val(null);
+        $('#saveBtn').show();
+        $('#addCategory').show();
+        $('.saveDismiss').show();
+        $('#updateBtn').hide();
+        $('#updateCategory').hide();
+        $('.updateDismiss').hide();
+    }
+</script>
+}
