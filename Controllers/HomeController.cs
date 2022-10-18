@@ -23,7 +23,7 @@ namespace Blog.Controllers
         }
         public async Task<IActionResult> AddCategory(Category category)
         {
-            if(category.Id == 0)
+            if (category.Id == 0)
             {
                 await _context.AddAsync(category);
             }
@@ -46,7 +46,40 @@ namespace Blog.Controllers
             var category = await _context.Category.FindAsync(id);
             return Json(category); // category transform to json
         }
+        #endregion
 
+        #region CRUD Users
+        public IActionResult Users()
+        {
+            List<Users> list = _context.Users.ToList();
+            return View(list);
+        }
+        public async Task<IActionResult> AddUser(Users users)
+        {
+            users.IsAdmin = 0; //this gonna be change
+            if (users.Id == 0)
+            {
+                await _context.AddAsync(users);
+            }
+            else
+            {
+                _context.Update(users);
+            }
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Users));
+        }
+        public async Task<ActionResult> DeleteUser(int? id)
+        {
+            Users users = await _context.Users.FindAsync(id);
+            _context.Remove(users);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Users));
+        }
+        public async Task<ActionResult> UserDetails(int id)
+        {
+            var user = await _context.Users.FindAsync(id);
+            return Json(user); // category transform to json
+        }
         #endregion
         public IActionResult About()
         {
