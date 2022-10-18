@@ -14,16 +14,25 @@ namespace Blog.Controllers
             _logger = logger;
             _context = context;
         }
-        public async Task<IActionResult> AddCategory(Category category)
-        {
-            await _context.AddAsync(category);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Category));
-        }
+
+        #region CRUD Category
         public IActionResult Category()
         {
             List<Category> list = _context.Category.ToList();
             return View(list);
+        }
+        public async Task<IActionResult> AddCategory(Category category)
+        {
+            if(category.Id == 0)
+            {
+                await _context.AddAsync(category);
+            }
+            else
+            {
+                _context.Update(category);
+            }
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Category));
         }
         public async Task<ActionResult> DeleteCategory(int? id)
         {
@@ -32,6 +41,13 @@ namespace Blog.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Category));
         }
+        public async Task<ActionResult> CategoryDetails(int id)
+        {
+            var category = await _context.Category.FindAsync(id);
+            return Json(category); // category transform to json
+        }
+
+        #endregion
         public IActionResult About()
         {
             return View();
