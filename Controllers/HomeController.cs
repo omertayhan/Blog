@@ -81,15 +81,54 @@ namespace Blog.Controllers
             return Json(user); // category transform to json
         }
         #endregion
-        public IActionResult About()
-        {
-            return View();
-        }
+
+        #region Login and Sign in
         public IActionResult Login()
         {
             return View();
         }
         public IActionResult SignIn()
+        {
+            return View();
+        }
+        public IActionResult LoginControl(string email, string password)
+        {
+            var user = _context.Users.FirstOrDefault(x => x.Email == email && x.Password == password);
+            if (user == null)
+            {
+                //gonna come error msg
+                return RedirectToAction(nameof(Login));
+            }
+
+            HttpContext.Session.SetInt32("id", user.Id);
+            HttpContext.Session.SetInt32("admin", user.IsAdmin);
+            return RedirectToAction(nameof(Users));
+        }
+
+        public async Task<IActionResult> SignInAdd(Users users)
+        {
+            users.IsAdmin = 0; //this gonna be change
+            if (users.Id == 0)
+            {
+                await _context.AddAsync(users);
+            }
+            else
+            {
+                _context.Update(users);
+            }
+            await _context.SaveChangesAsync();
+            //gonna come success msg
+            return RedirectToAction(nameof(Index));
+        }
+        public IActionResult UserExit()
+        {
+            HttpContext.Session.Remove("admin");
+            HttpContext.Session.Remove("id");
+            return RedirectToAction(nameof(Index));
+        }
+        #endregion
+
+        public IActionResult About()
         {
             return View();
         }
