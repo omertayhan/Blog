@@ -1,4 +1,6 @@
 using Blog.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +10,15 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<BlogContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("BlogDb")));
 builder.Services.AddSession();
+
+// Authorization process
+builder.Services.AddMvc(config =>
+{
+    var policy = new AuthorizationPolicyBuilder()
+        .RequireAuthenticatedUser()
+        .Build();
+    config.Filters.Add(new AuthorizeFilter(policy));
+});
 
 var app = builder.Build();
 
