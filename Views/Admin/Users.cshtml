@@ -76,7 +76,7 @@
 <script>
     $(() => clearForm()); //when new pages opens func start
     function updateForm(Id) {
-        fetch('/Home/UserDetails?Id=' + Id) //? => means i use parameters
+        fetch('/Admin/UserDetails?Id=' + Id) //? => means i use parameters
             .then(res => res.json())
             .then(res => {
                 $('#Id').val(res.id)
