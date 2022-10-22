@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Blog.Controllers
 {
+    [AllowAnonymous]
     public class LoginController : Controller
     {
         private readonly ILogger<LoginController> _logger;
@@ -14,19 +15,15 @@ namespace Blog.Controllers
             _logger = logger;
             _context = context;
         }
-
-        #region Login and Sign in
-        [AllowAnonymous]
+        
         public IActionResult Login()
         {
             return View();
         }
-        [AllowAnonymous]
         public IActionResult SignIn()
         {
             return View();
         }
-        [AllowAnonymous]
         public IActionResult LoginControl(string email, string password)
         {
             var user = _context.Users.FirstOrDefault(x => x.Email == email && x.Password == password);
@@ -40,10 +37,8 @@ namespace Blog.Controllers
             {
                 return RedirectToAction("Login", "Login");
             }
-
         }
 
-        [AllowAnonymous]
         public async Task<IActionResult> SignInAdd(Users users)
         {
             users.IsAdmin = 0; //this gonna be change
@@ -60,7 +55,6 @@ namespace Blog.Controllers
             return RedirectToAction("Index", "Home");
 
         }
-        [AllowAnonymous]
         public IActionResult UserExit()
         {
             HttpContext.Session.Remove("admin");
