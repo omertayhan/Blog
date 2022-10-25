@@ -5,7 +5,7 @@
 }
 <!-- Button trigger modal -->
 <button type="button" onclick="clearForm()" class="btn btn-primary" data-toggle="modal" data-target="#CategoryModal">
-    Kategori Ekle
+    Add Category
 </button>
 <table class="table table-hover">
     <thead>
@@ -38,7 +38,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="post" action="/Home/AddCategory" autocomplete="off">
+            <form method="post" action="/Admin/AddCategory" autocomplete="off">
                 <div class="modal-body">
                     <div class="form-group">
                         <input type="hidden" name="Id" id="Id" class="form-control">
@@ -59,7 +59,7 @@
 <script>
     $(() => clearForm()); //when new pages opens func start 
     function updateForm(Id){
-        fetch('/Home/CategoryDetails?Id='+Id) //? => means i use parameters 
+        fetch('/Admin/CategoryDetails?Id='+Id) //? => means i use parameters 
             .then(res => res.json())
             .then(res =>{
                 $('#Id').val(res.id)
