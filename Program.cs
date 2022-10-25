@@ -12,15 +12,6 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("BlogDb")));
 
 builder.Services.AddSession();
 
-// Authorization process
-builder.Services.AddMvc(config =>
-{
-    var policy = new AuthorizationPolicyBuilder()
-        .RequireAuthenticatedUser()
-        .Build();
-    config.Filters.Add(new AuthorizeFilter(policy));
-});
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
