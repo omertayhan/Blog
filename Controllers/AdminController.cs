@@ -66,7 +66,6 @@ namespace Blog.Controllers
             }
             await _context.SaveChangesAsync();
             return RedirectToAction("Users", "Admin");
-
         }
         public async Task<ActionResult> DeleteUser(int? id)
         {

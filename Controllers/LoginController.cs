@@ -1,8 +1,10 @@
 ﻿using Blog.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Blog.Controllers
 {
+    [AllowAnonymous]
     public class LoginController : Controller
     {
         private readonly ILogger<LoginController> _logger;
@@ -15,6 +17,7 @@ namespace Blog.Controllers
         }
 
         #region Login and Sign in
+        
         public IActionResult Login()
         {
             return View();
@@ -56,7 +59,5 @@ namespace Blog.Controllers
         {
             HttpContext.Session.Clear();
             return RedirectToAction("Index", "Home");
-        }
-        #endregion
     }
 }

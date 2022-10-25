@@ -3,6 +3,7 @@
     int? id = Context.Session.GetInt32("id");
     int? admin = Context.Session.GetInt32("admin");
 }
+@model IEnumerable<Users>
 <!DOCTYPE html>
 <head>
     <meta lang="tr" />
@@ -53,7 +54,14 @@
                     }
                     @if (id.HasValue)
                     {
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="@Url.Action("UserExit", "Login")">Exit</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link px-lg-3 py-3 py-lg-4 dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                @id.ToString();
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="@Url.Action("UserExit", "Login")">Log Out</a>
+                            </div>
+                        </li>
                     }
                 </ul>
             </div>
