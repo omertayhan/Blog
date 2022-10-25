@@ -61,6 +61,5 @@ namespace Blog.Controllers
             HttpContext.Session.Remove("id");
             return RedirectToAction("Index", "Home");
         }
-        #endregion
     }
 }
