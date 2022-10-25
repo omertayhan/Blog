@@ -3,7 +3,6 @@
     int? id = Context.Session.GetInt32("id");
     int? admin = Context.Session.GetInt32("admin");
 }
-@model IEnumerable<Users>
 <!DOCTYPE html>
 <head>
     <meta lang="tr" />
@@ -44,7 +43,7 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" href="@Url.Action("Category", "Admin")">Category</a>
-                                <a class="dropdown-item" href="@Url.Action("Users", "Admin")">Users</a>
+                                <a class="dropdown-item" href="@Url.Action("User", "Admin")">Users</a>
                             </div>
                         </li>
                     }

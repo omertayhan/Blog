@@ -48,7 +48,7 @@ namespace Blog.Controllers
         #endregion
 
         #region CRUD Users
-        public IActionResult Users()
+        public IActionResult User()
         {
             List<Users> list = _context.Users.ToList();
             return View(list);
@@ -65,14 +65,14 @@ namespace Blog.Controllers
                 _context.Update(users);
             }
             await _context.SaveChangesAsync();
-            return RedirectToAction("Users", "Admin");
+            return RedirectToAction("User", "Admin");
         }
         public async Task<ActionResult> DeleteUser(int? id)
         {
             Users users = await _context.Users.FindAsync(id);
             _context.Remove(users);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Users));
+            return RedirectToAction("User", "Admin");
         }
         public async Task<ActionResult> UserDetails(int id)
         {
