@@ -1,12 +1,12 @@
 ﻿@{
-    ViewData["Title"] = "Sign In Page";
+    ViewData["Title"] = "SignIn";
 }
 <div id="signInModal" class="row gx-4 gx-lg-5 mb-6 justify-content-center">
     <div class="card col-sm-4">
         <article class="card-body">
-            <h4 class="card-title text-center mb-4 mt-1">Sign in</h4>
-            <h7 class="card-title mb-4 mt-1">Go back to Login: </h7>
-            <a href="@Url.Action("Login", "Login")" class="float-right btn btn-outline-primary">Login</a>
+            <h4 class="card-title text-center mb-4 mt-1">Sign up</h4>
+            <h7 class="card-title mb-4 mt-1">If you  have account: </h7>
+            <a href="@Url.Action("Login", "Login")" class="float-right btn btn-outline-primary">Log in</a>
             <form method="post" action="/Login/SignInAdd">
                 <div class="form-group mb-2">
                     <div class="input-group-prepend mb-2">
@@ -20,7 +20,7 @@
                         <input type="text" name="Surname" id="Surname" class="form-control" placeholder="Your Surname" required>
                     </div>
                     <div class="form-group mb-2">
-                        <input type="text" name="Email" id="Email" class="form-control" placeholder="Your Email" required>
+                        <input type="email" name="Email" id="Email" class="form-control" placeholder="Your Email" required>
                     </div>
                 </div>
                 <div class="form-group mb-2">

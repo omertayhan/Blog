@@ -15,6 +15,8 @@ namespace Blog.Controllers
             _logger = logger;
             _context = context;
         }
+
+        #region Login and Sign in
         
         public IActionResult Login()
         {
@@ -27,16 +29,15 @@ namespace Blog.Controllers
         public IActionResult LoginControl(string email, string password)
         {
             var user = _context.Users.FirstOrDefault(x => x.Email == email && x.Password == password);
-            if (user != null)
+            if (user == null)
             {
-                HttpContext.Session.SetInt32("id", user.Id);
-                HttpContext.Session.SetInt32("admin", user.IsAdmin);
-                return RedirectToAction("Index", "Home");
+                //gonna come error msg
+                return RedirectToAction("Login","Login");
             }
-            else
-            {
-                return RedirectToAction("Login", "Login");
-            }
+
+            HttpContext.Session.SetInt32("id", user.Id);
+            HttpContext.Session.SetInt32("admin", user.IsAdmin);
+            return RedirectToAction("Index","Home");
         }
 
         public async Task<IActionResult> SignInAdd(Users users)
@@ -53,13 +54,10 @@ namespace Blog.Controllers
             await _context.SaveChangesAsync();
             //gonna come success msg
             return RedirectToAction("Index", "Home");
-
         }
         public IActionResult UserExit()
         {
-            HttpContext.Session.Remove("admin");
-            HttpContext.Session.Remove("id");
+            HttpContext.Session.Clear();
             return RedirectToAction("Index", "Home");
-        }
     }
 }

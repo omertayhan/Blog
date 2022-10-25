@@ -31,14 +31,14 @@ namespace Blog.Controllers
                 _context.Update(category);
             }
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Category));
+            return RedirectToAction("Category", "Admin");
         }
         public async Task<ActionResult> DeleteCategory(int? id)
         {
             Category category = await _context.Category.FindAsync(id);
             _context.Remove(category);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Category));
+            return RedirectToAction("Category", "Admin");
         }
         public async Task<ActionResult> CategoryDetails(int id)
         {
@@ -65,7 +65,7 @@ namespace Blog.Controllers
                 _context.Update(users);
             }
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Users));
+            return RedirectToAction("Users", "Admin");
         }
         public async Task<ActionResult> DeleteUser(int? id)
         {

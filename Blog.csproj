@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\AdminPages\**" />
+    <Content Remove="Views\AdminPages\**" />
+    <EmbeddedResource Remove="Views\AdminPages\**" />
+    <None Remove="Views\AdminPages\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameWorkCore" Version="6.0.9" />
     <PackageReference Include="Microsoft.EntityFrameWorkCore.Design" Version="6.0.9">
