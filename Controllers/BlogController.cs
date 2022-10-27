@@ -29,6 +29,14 @@ namespace Blog.Controllers
             return View();
         }
 
+        public async Task<ActionResult> DeletePost(int? id)
+        {
+            var blog = _context.Blogs.Find(id);
+            _context.Remove(blog);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("BlogList", "Blog");
+        }
+
         public IActionResult BlogList()
         {
             var list = _context.Blogs.ToList();

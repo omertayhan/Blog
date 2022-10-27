@@ -7,12 +7,16 @@ namespace Blog.Extensions.UserFilter
     {
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-            int? userId = context.HttpContext.Session.GetInt32("id");
             int? adminId = context.HttpContext.Session.GetInt32("admin");
-            if (!userId.HasValue && !adminId.HasValue)
+            if (!adminId.HasValue)
             {
-                context.Result = new RedirectToActionResult("Index", "Home", "/Home/Index");
+                context.Result = new RedirectToRouteResult(new RouteValueDictionary
+                {
+                    {"action", "Index"},
+                    {"controller", "Home"}
+                });
             }
+            base.OnActionExecuting(context);
         }
     }
 }
