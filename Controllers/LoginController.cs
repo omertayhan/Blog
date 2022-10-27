@@ -34,6 +34,7 @@ namespace Blog.Controllers
             }
 
             HttpContext.Session.SetInt32("id", user.Id);
+            HttpContext.Session.SetString("fullname", user.Name + " " + user.Surname);
             HttpContext.Session.SetInt32("admin", user.IsAdmin);
             return RedirectToAction("Index", "Home");
         }
