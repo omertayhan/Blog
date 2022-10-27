@@ -1,4 +1,5 @@
-﻿using Blog.Models;
+﻿using System.Diagnostics;
+using Blog.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Blog.Controllers
@@ -80,5 +81,11 @@ namespace Blog.Controllers
             return Json(user); // category transform to json
         }
         #endregion
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
     }
 }
