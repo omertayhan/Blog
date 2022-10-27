@@ -1,10 +1,12 @@
 ﻿using System.Diagnostics;
+using Blog.Extensions.UserFilter;
 using Blog.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Blog.Controllers
 {
+    [UserFilter]
     public class BlogController : Controller
     {
         private readonly ILogger<BlogController> _logger;
@@ -16,7 +18,7 @@ namespace Blog.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        public IActionResult BlogAdd()
         {
             ViewBag.Categories = _context.Category.Select(w =>
                 new SelectListItem
@@ -26,14 +28,38 @@ namespace Blog.Controllers
                 }).ToList();
             return View();
         }
-        
+
+        public IActionResult BlogList()
+        {
+            var list = _context.Blogs.ToList();
+            return View(list);
+        }
+
+        public IActionResult Publish(int id)
+        {
+            var blog = _context.Blogs.Find(id);
+            blog.IsPublish = true;
+            _context.Update(blog);
+            _context.SaveChanges();
+            return RedirectToAction("BlogList");
+        }
+
+        public IActionResult UnPublish(int id)
+        {
+            var blog = _context.Blogs.Find(id);
+            blog.IsPublish = false;
+            _context.Update(blog);
+            _context.SaveChanges();
+            return RedirectToAction("BlogList");
+        }
+
         public async Task<IActionResult> Save(Models.Blog model)
         {
             if (model != null)
             {
                 var file = Request.Form.Files.First();
                 string savePath = Path.Combine("C:","masters","Blog","Blog","wwwroot","img");
-                var fileName = $"{DateTime.Now.Date:MMddHHmmSS}.{file.FileName.Split(".").Last()}";
+                var fileName = $"{DateTime.Now.Date:DDmmYYhhMMss}.{file.FileName.Split(".").Last()}";
                 var fileUrl = Path.Combine(savePath, fileName);
                 using (var stream = new FileStream(fileUrl, FileMode.Create))
                 {

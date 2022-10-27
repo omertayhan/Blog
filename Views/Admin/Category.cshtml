@@ -2,63 +2,77 @@
 @{
     ViewData["Title"] = "Category";
 }
-<!-- Button trigger modal -->
-<button type="button" onclick="clearForm()" class="btn btn-primary" data-toggle="modal" data-target="#CategoryModal">
-    Add Category
-</button>
-<table class="table table-hover">
-    <thead>
-    <th scope="col">Id</th>
-    <th scope="col">Name</th>
-    <th scope="col">Options</th>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <th scope="row">@item.Id</th>
-                <td>@item.Name</td>
-                <td>
-                    <a class="btn btn-danger" asp-route-id="@item.Id" asp-action="DeleteCategory">Delete</a>
-                    <button class="btn btn-secondary" onclick="updateForm(@item.Id)" type="button">Update</button>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
-<!-- Modal -->
-<div class="modal fade" id="CategoryModal" tabindex="-1" role="dialog" aria-labelledby="CategoryModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="addCategory">Add Category</h5>
-                <h5 class="modal-title" id="updateCategory">Update Category</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+<header class="masthead" style="background-image: url('@Url.Content("~/img/home-bg.jpg")')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="site-heading">
+                    <h1>Blogs</h1>
+                    <span class="subheading">Diary of the Tufan</span>
+                </div>
             </div>
-            <form method="post" action="/Admin/AddCategory" autocomplete="off">
-                <div class="modal-body">
-                    <div class="form-group">
-                        <input type="hidden" name="Id" id="Id" class="form-control">
-                        <input type="text" name="Name" id="Name" class="form-control" placeholder="Lütfen Kategori Giriniz..">
+        </div>
+    </div>
+</header>
+<div class="container">
+    <!-- Button trigger modal -->
+    <button type="button" onclick="clearForm()" class="btn btn-primary" data-toggle="modal" data-target="#CategoryModal">
+        Add Category
+    </button>
+    <table class="table table-hover mb-4">
+        <thead>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Options</th>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th scope="row">@item.Id</th>
+                    <td>@item.Name</td>
+                    <td>
+                        <a class="btn btn-danger" asp-route-id="@item.Id" asp-action="DeleteCategory">Delete</a>
+                        <button class="btn btn-secondary" onclick="updateForm(@item.Id)" type="button">Update</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <!-- Modal -->
+    <div class="modal fade " id="CategoryModal" tabindex="-1" role="dialog" aria-labelledby="CategoryModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addCategory">Add Category</h5>
+                    <h5 class="modal-title" id="updateCategory">Update Category</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="post" action="/Admin/AddCategory" autocomplete="off">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <input type="hidden" name="Id" id="Id" class="form-control">
+                            <input type="text" name="Name" id="Name" class="form-control" placeholder="Lütfen Kategori Giriniz..">
+                        </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary saveDismiss" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-secondary updateDismiss" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" id="saveBtn" class="btn btn-primary">Add</button>
-                    <button type="submit" id="updateBtn" class="btn btn-primary">Update</button>
-                </div>
-            </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary saveDismiss" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary updateDismiss" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" id="saveBtn" class="btn btn-primary">Add</button>
+                        <button type="submit" id="updateBtn" class="btn btn-primary">Update</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
 @section Scripts{
 <script>
-    $(() => clearForm()); //when new pages opens func start 
+    $(() => clearForm()); //when new pages opens func start
     function updateForm(Id){
-        fetch('/Admin/CategoryDetails?Id='+Id) //? => means i use parameters 
+        fetch('/Admin/CategoryDetails?Id='+Id) //? => means i use parameters
             .then(res => res.json())
             .then(res =>{
                 $('#Id').val(res.id)

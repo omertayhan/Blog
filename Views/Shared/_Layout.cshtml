@@ -38,19 +38,27 @@
                     <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="@Url.Action("Index", "Home")">Home</a></li>
                     <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="@Url.Action("About", "Home")">About</a></li>
                     <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="@Url.Action("Contact", "Home")">Contact</a></li>
-                    @*@if (admin.Equals(1))
-                        {*@
-                    <li class="nav-item dropdown">
-                        <a class="nav-link px-lg-3 py-3 py-lg-4 dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Admin Options
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="@Url.Action("Category", "Admin")">Category</a>
-                            <a class="dropdown-item" href="@Url.Action("User", "Admin")">Users</a>
-                            <a class="dropdown-item" href="@Url.Action("Index", "Blog")">Blog</a>
-                        </div>
-                    </li>
-                    @*   }*@
+                    @if (admin.Equals(1))
+                    {
+                        <li class="nav-item dropdown">
+                            <a class="nav-link px-lg-3 py-3 py-lg-4 dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Admin Options
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="@Url.Action("Category", "Admin")">Category</a>
+                                <a class="dropdown-item" href="@Url.Action("User", "Admin")">Users</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link px-lg-3 py-3 py-lg-4 dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Blog Options
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="@Url.Action("BlogAdd", "Blog")">Add Blog</a>
+                                <a class="dropdown-item" href="@Url.Action("BlogList", "Blog")">Blog List</a>
+                            </div>
+                        </li>
+                    }
                     @if (id.Equals(null))
                     {
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="@Url.Action("Login", "Login")">Login</a></li>
@@ -70,23 +78,7 @@
             </div>
         </div>
     </nav>
-    <!-- Page Header-->
-    <header class="masthead" style="background-image: url('@Url.Content("~/img/home-bg.jpg")')">
-        <div class="container position-relative px-4 px-lg-5">
-            <div class="row gx-4 gx-lg-5 justify-content-center">
-                <div class="col-md-10 col-lg-8 col-xl-7">
-                    <div class="site-heading">
-                        <h1>Blogs</h1>
-                        <span class="subheading">Diary of the Tufan</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <div class="container">
-        @RenderBody()
-    </div>
+    @RenderBody()
 
     <!-- Footer-->
     <footer class="border-top">
