@@ -2,38 +2,52 @@
 @{
     ViewData["Title"] = "BlogList";
 }
-<a href="@Url.Action("BlogAdd", "Blog")" class="float-right btn btn-outline-primary">Add New Post</a>
+<header class="masthead" style="background-image: url('@Url.Content("~/img/home-bg.jpg")')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="site-heading">
+                    <h1>Blogs</h1>
+                    <span class="subheading">Diary of the Tufan</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="container">
+    <a href="@Url.Action("BlogAdd", "Blog")" class="float-right btn btn-outline-primary">Add New Post</a>
 
-<table class="table table-hover mb-4">
-    <thead>
-    <th scope="col">Id</th>
-    <th scope="col">Title</th>
-    <th scope="col">Subtitle</th>
-    <th scope="col">Category</th>
-    <th scope="col">Created Date</th>
-    <th scope="col">Options</th>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <th scope="row">@item.Id</th>
-                <td>@item.Title</td>
-                <td>@item.Subtitle</td>
-                <td>@item.Category</td>
-                <td>@item.CreateTime</td>
-                <td>
-                    @if (item.IsPublish)
-                    {
-                        <a class="btn btn-success" >Published</a>
-                    }
-                    else
-                    {
-                        <a class="btn btn-secondary" href="@Url.Action("Publish", "Blog", new { id = item.Id})" >Publish</a>
-                    }
-                    @*  <button class="btn btn-secondary" onclick="updateForm(@item.Id)" type="button">Update</button>*@
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+    <table class="table table-hover mb-4">
+        <thead>
+        <th scope="col">Id</th>
+        <th scope="col">Title</th>
+        <th scope="col">Subtitle</th>
+        <th scope="col">Category</th>
+        <th scope="col">Created Date</th>
+        <th scope="col">Options</th>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th scope="row">@item.Id</th>
+                    <td>@item.Title</td>
+                    <td>@item.Subtitle</td>
+                    <td>@item.Category</td>
+                    <td>@item.CreateTime</td>
+                    <td>
+                        @if (item.IsPublish)
+                        {
+                            <a class="btn btn-success" href="@Url.Action("UnPublish", "Blog", new { id = item.Id})">Published</a>
+                        }
+                        else
+                        {
+                            <a class="btn btn-secondary" href="@Url.Action("Publish", "Blog", new { id = item.Id})">Publish</a>
+                        }
+                        @*  <button class="btn btn-secondary" onclick="updateForm(@item.Id)" type="button">Update</button>*@
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -23,6 +23,13 @@ namespace Blog.Controllers
             }
             return View(list);
         }
+        public IActionResult PostDetail(int Id)
+        {
+            var list = _context.Blogs.Find(Id);
+            list.User = _context.Users.Find(list.UserId);
+            list.ImagePath = "/img/" + list.ImagePath;
+            return View(list);
+        }
         public IActionResult About()
         {
             return View();

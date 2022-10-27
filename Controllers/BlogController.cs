@@ -42,13 +42,22 @@ namespace Blog.Controllers
             return RedirectToAction("BlogList");
         }
 
+        public IActionResult UnPublish(int id)
+        {
+            var blog = _context.Blogs.Find(id);
+            blog.IsPublish = false;
+            _context.Update(blog);
+            _context.SaveChanges();
+            return RedirectToAction("BlogList");
+        }
+
         public async Task<IActionResult> Save(Models.Blog model)
         {
             if (model != null)
             {
                 var file = Request.Form.Files.First();
                 string savePath = Path.Combine("C:","masters","Blog","Blog","wwwroot","img");
-                var fileName = $"{DateTime.Now.Date:MMddHHmmSS}.{file.FileName.Split(".").Last()}";
+                var fileName = $"{DateTime.Now.Date:DDmmYYhhMMss}.{file.FileName.Split(".").Last()}";
                 var fileUrl = Path.Combine(savePath, fileName);
                 using (var stream = new FileStream(fileUrl, FileMode.Create))
                 {
