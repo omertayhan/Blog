@@ -43,10 +43,11 @@
         formData.append("categoryId", category.value);
         formData.append("content", content);
 
-        fetch('/Blog/Save', {
+        fetch('/Blog/Save',
+            {
                 method: 'POST',
                 body: formData
-            }).then(res => res.json())
+            }).then(res => res.json());
     }
 </script>
 }

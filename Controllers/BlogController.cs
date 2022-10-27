@@ -41,7 +41,7 @@ namespace Blog.Controllers
                 }
 
                 model.ImagePath = fileName;
-                model.AuthorId = (int)HttpContext.Session.GetInt32("id");
+                model.UserId = (int)HttpContext.Session.GetInt32("id");
                 await _context.AddAsync(model);
                 await _context.SaveChangesAsync();
                 return Json(true);
