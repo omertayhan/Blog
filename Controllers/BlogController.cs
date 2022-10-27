@@ -16,7 +16,7 @@ namespace Blog.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        public IActionResult BlogAdd()
         {
             ViewBag.Categories = _context.Category.Select(w =>
                 new SelectListItem
@@ -26,7 +26,22 @@ namespace Blog.Controllers
                 }).ToList();
             return View();
         }
-        
+
+        public IActionResult BlogList()
+        {
+            var list = _context.Blogs.ToList();
+            return View(list);
+        }
+
+        public IActionResult Publish(int id)
+        {
+            var blog = _context.Blogs.Find(id);
+            blog.IsPublish = true;
+            _context.Update(blog);
+            _context.SaveChanges();
+            return RedirectToAction("BlogList");
+        }
+
         public async Task<IActionResult> Save(Models.Blog model)
         {
             if (model != null)

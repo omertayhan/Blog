@@ -1,17 +1,27 @@
 ﻿using Blog.Models;
-using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Blog.Controllers
 {
-
-    [AllowAnonymous]
     public class HomeController : Controller
     {
+        private readonly ILogger<HomeController> _logger;
+        private readonly BlogContext _context;
+
+        public HomeController(ILogger<HomeController> logger, BlogContext context)
+        {
+            _logger = logger;
+            _context = context;
+        }
         public IActionResult Index()
         {
-            return View();
+            var list = _context.Blogs.ToList();
+            foreach (var blog in list)
+            {
+                blog.User = _context.Users.Find(blog.UserId); // gonna fix
+            }
+            return View(list);
         }
         public IActionResult About()
         {

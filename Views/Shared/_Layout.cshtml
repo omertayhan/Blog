@@ -47,7 +47,15 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="@Url.Action("Category", "Admin")">Category</a>
                             <a class="dropdown-item" href="@Url.Action("User", "Admin")">Users</a>
-                            <a class="dropdown-item" href="@Url.Action("Index", "Blog")">Blog</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link px-lg-3 py-3 py-lg-4 dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Blog Options
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="@Url.Action("BlogAdd", "Blog")">Add Blog</a>
+                            <a class="dropdown-item" href="@Url.Action("BlogList", "Blog")">Blog List</a>
                         </div>
                     </li>
                     @*   }*@
