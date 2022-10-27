@@ -1,10 +1,8 @@
 ﻿using Blog.Models;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Blog.Controllers
 {
-    [AllowAnonymous]
     public class LoginController : Controller
     {
         private readonly ILogger<LoginController> _logger;

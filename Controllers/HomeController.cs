@@ -16,7 +16,7 @@ namespace Blog.Controllers
         }
         public IActionResult Index()
         {
-            var list = _context.Blogs.Take(4).Where(b => b.IsPublish).OrderByDescending(x => x.CreateTime).ToList();
+            var list = _context.Blogs.Take(4).OrderByDescending(x => x.CreateTime).ToList();
             foreach (var blog in list)
             {
                 blog.User = _context.Users.Find(blog.UserId);

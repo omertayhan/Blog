@@ -1,9 +1,11 @@
 ﻿using System.Diagnostics;
+using Blog.Extensions.UserFilter;
 using Blog.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Blog.Controllers
 {
+    [UserFilter]
     public class AdminController : Controller
     {
         private readonly ILogger<AdminController> _logger;

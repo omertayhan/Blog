@@ -1,10 +1,12 @@
 ﻿using System.Diagnostics;
+using Blog.Extensions.UserFilter;
 using Blog.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Blog.Controllers
 {
+    [UserFilter]
     public class BlogController : Controller
     {
         private readonly ILogger<BlogController> _logger;
