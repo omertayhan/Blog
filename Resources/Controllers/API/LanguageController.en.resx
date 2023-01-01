@@ -120,8 +120,8 @@
   <data name="en" xml:space="preserve">
     <value>English</value>
   </data>
-  <data name="home" xml:space="preserve">
-    <value>Home</value>
+  <data name="RandomGUID" xml:space="preserve">
+    <value>RandomGUID is {0}</value>
   </data>
   <data name="tr" xml:space="preserve">
     <value>Turkish</value>
