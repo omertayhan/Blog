@@ -12,6 +12,7 @@ namespace Blog.Controllers
         {
             _localizer = localizer;
         }
+
         [HttpGet]
         public async Task<IActionResult> Get()
         {

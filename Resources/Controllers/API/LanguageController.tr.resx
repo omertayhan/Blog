@@ -120,8 +120,8 @@
   <data name="en" xml:space="preserve">
     <value>İngilizce</value>
   </data>
-  <data name="home" xml:space="preserve">
-    <value>Anasayfa</value>
+  <data name="RandomGUID" xml:space="preserve">
+    <value>Rastgele GUID {0}</value>
   </data>
   <data name="tr" xml:space="preserve">
     <value>Türkçe</value>
