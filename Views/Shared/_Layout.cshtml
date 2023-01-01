@@ -36,33 +36,33 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto py-4 py-lg-0">
-                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="@Url.Action("Index", "Home")">Home</a></li>
-                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="@Url.Action("About", "Home")">About</a></li>
-                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="@Url.Action("Contact", "Home")">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="@Url.Action("Index", "Home")">@localizer["Home"]</a></li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="@Url.Action("About", "Home")">@localizer["About"]</a></li>
+                    <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="@Url.Action("Contact", "Home")">@localizer["Contact"]</a></li>
                     @if (admin.Equals(1))
                     {
                         <li class="nav-item dropdown">
                             <a class="nav-link px-lg-3 py-3 py-lg-4 dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Admin Options
+                                @localizer["AdminOptions"]
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="@Url.Action("Category", "Admin")">Category</a>
-                                <a class="dropdown-item" href="@Url.Action("User", "Admin")">Users</a>
+                                <a class="dropdown-item" href="@Url.Action("Category", "Admin")">@localizer["Category"]</a>
+                                <a class="dropdown-item" href="@Url.Action("User", "Admin")">@localizer["Users"]</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link px-lg-3 py-3 py-lg-4 dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Blog Options
+                                @localizer["BlogOptions"]
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="@Url.Action("BlogAdd", "Blog")">Add Blog</a>
-                                <a class="dropdown-item" href="@Url.Action("BlogList", "Blog")">Blog List</a>
+                                <a class="dropdown-item" href="@Url.Action("BlogAdd", "Blog")">@localizer["AddBlog"]</a>
+                                <a class="dropdown-item" href="@Url.Action("BlogList", "Blog")">@localizer["BlogList"]</a>
                             </div>
                         </li>
                     }
                     @if (id.Equals(null))
                     {
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="@Url.Action("Login", "Login")">Login</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="@Url.Action("Login", "Login")">@localizer["Login"]</a></li>
                     }
                     @if (id.HasValue)
                     {
@@ -71,10 +71,11 @@
                                 @name
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="@Url.Action("UserExit", "Login")">Log Out</a>
+                                <a class="dropdown-item" href="@Url.Action("UserExit", "Login")">@localizer["LogOut"]</a>
                             </div>
                         </li>
                     }
+                    <li class="nav-item ">@await Html.PartialAsync("_CulturePartial")</li>
                 </ul>
             </div>
         </div>

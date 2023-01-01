@@ -7,8 +7,8 @@
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-md-10 col-lg-8 col-xl-7">
                 <div class="site-heading">
-                    <h1>Blogs</h1>
-                    <span class="subheading">Diary of the Tufan</span>
+                    <h1>@localizer["Blogs"]</h1>
+                    <span class="subheading">@localizer["DiaryTufan"]</span>
                 </div>
             </div>
         </div>
@@ -17,17 +17,17 @@
 <div class="container">
     <!-- Button trigger modal -->
     <button type="button" onclick="clearForm()" class="btn btn-primary" data-toggle="modal" data-target="#UserModal">
-        Add User
+        @localizer["AddUser"]
     </button>
     <table class="table table-hover mb-4">
         <thead>
-        <th scope="col">Id</th>
-        <th scope="col">Name</th>
-        <th scope="col">Surname</th>
-        <th scope="col">Email</th>
-        <th scope="col">Is Admin</th>
-        <th scope="col">Password</th>
-        <th scope="col">Options</th>
+        <th scope="col">@localizer["Id"]</th>
+        <th scope="col">@localizer["Name"]</th>
+        <th scope="col">@localizer["Surname"]</th>
+        <th scope="col">@localizer["Email"]</th>
+        <th scope="col">@localizer["IsAdmin"]</th>
+        <th scope="col">@localizer["Password"]</th>
+        <th scope="col">@localizer["Options"]</th>
         </thead>
         <tbody>
             @foreach (var item in Model)
@@ -39,16 +39,16 @@
                     <td>@item.Email</td>
                     @if (item.IsAdmin == 1)
                     {
-                        <td>Yes</td>
+                        <td>@localizer["Yes"]</td>
                     }
                     else
                     {
-                        <td>No</td>
+                        <td>@localizer["No"]</td>
                     }
                     <td>@item.Password</td>
                     <td>
-                        <a class="btn btn-danger" asp-route-id="@item.Id" asp-action="DeleteUser">Delete</a>
-                        <button class="btn btn-secondary" onclick="updateForm(@item.Id)" type="button">Update</button>
+                        <a class="btn btn-danger" asp-route-id="@item.Id" asp-action="DeleteUser">@localizer["Delete"]</a>
+                        <button class="btn btn-secondary" onclick="updateForm(@item.Id)" type="button">@localizer["Update"]</button>
                     </td>
                 </tr>
             }
@@ -60,8 +60,8 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="addUser">Add User</h5>
-                <h5 class="modal-title" id="updateUser">Update User</h5>
+                <h5 class="modal-title" id="addUser">@localizer["AddUser"]</h5>
+                <h5 class="modal-title" id="updateUser">@localizer["UpdateUser"]</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -70,23 +70,23 @@
                 <div class="modal-body">
                     <div class="form-group mb-1">
                         <input type="hidden" name="Id" id="Id" class="form-control">
-                        <input type="text" name="Name" id="Name" class="form-control" placeholder="Your Name">
+                        <input type="text" name="Name" id="Name" class="form-control" placeholder="@localizer["YourName"]">
                     </div>
                     <div class="form-group mb-1">
-                        <input type="text" name="Surname" id="Surname" class="form-control" placeholder="Your Surname">
+                        <input type="text" name="Surname" id="Surname" class="form-control" placeholder="@localizer["YourSurname"]">
                     </div>
                     <div class="form-group mb-1">
-                        <input type="email" name="Email" id="Email" class="form-control" placeholder="Your Email">
+                        <input type="email" name="Email" id="Email" class="form-control" placeholder="@localizer["Email"]">
                     </div>
                     <div class="form-group mb-1">
-                        <input type="password" name="Password" id="Password" class="form-control" placeholder="Your Password">
+                        <input type="password" name="Password" id="Password" class="form-control" placeholder="@localizer["YourPassword"]">
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary saveDismiss" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-secondary updateDismiss" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" id="saveBtn" class="btn btn-primary">Add</button>
-                    <button type="submit" id="updateBtn" class="btn btn-primary">Update</button>
+                    <button type="button" class="btn btn-secondary saveDismiss" data-dismiss="modal">@localizer["Close"]</button>
+                    <button type="button" class="btn btn-secondary updateDismiss" data-bs-dismiss="modal">@localizer["Close"]</button>
+                    <button type="submit" id="saveBtn" class="btn btn-primary">@localizer["Add"]</button>
+                    <button type="submit" id="updateBtn" class="btn btn-primary">@localizer["Update"]</button>
                 </div>
             </form>
         </div>
