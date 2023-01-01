@@ -1,2 +1,2 @@
-﻿#selam ben ömer tufan ayhan
-ilk commit. 
+#Kişisel Blog Sayfası
+Docs/readme.pdf altında fonksiyonel kullanıcı dokümanı eklenmiştir, burası yakında düzenlenecektir.
