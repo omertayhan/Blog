@@ -1,4 +1,3 @@
-
 # Blog
 Personal Blog Page
 
